@@ -20,6 +20,7 @@ buildscript {
 
 // Apply plugins
 apply plugin: 'moe'
+apply plugin: 'kotlin'
 
 // Set source and target to Java 8
 sourceCompatibility = "1.8"
@@ -45,7 +46,14 @@ moe {
 dependencies {
     // Compile with 'jar' files in the project's 'lib' directory
     compile fileTree(dir: 'lib', include: '*.jar')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
+}
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
 }
 
 

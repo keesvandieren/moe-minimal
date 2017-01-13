@@ -27,7 +27,8 @@ public class Main extends NSObject implements UIApplicationDelegate {
         super(peer);
     }
 
-    private UIWindow window;
+    // Hack for this minimal example
+    public static UIWindow window;
 
     @Override
     public boolean applicationDidFinishLaunchingWithOptions(UIApplication application, NSDictionary launchOptions) {

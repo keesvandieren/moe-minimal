@@ -11,9 +11,11 @@ import org.moe.natj.objc.ann.Selector;
 import apple.NSObject;
 import apple.uikit.UIButton;
 import apple.uikit.UILabel;
+import apple.uikit.UIPopoverPresentationController;
+import apple.uikit.UIPresentationController;
 import apple.uikit.UIViewController;
-
-import static java.sql.DriverManager.println;
+import apple.uikit.enums.UIModalPresentationStyle;
+import apple.uikit.protocol.UIPopoverPresentationControllerDelegate;
 
 @org.moe.natj.general.ann.Runtime(ObjCRuntime.class)
 @ObjCClassName("AppViewController")
@@ -36,7 +38,7 @@ public class AppViewController extends UIViewController {
 
     @Override
     public void viewDidLoad() {
-        System.out.println("viewDidLoad");
+        System.out.println("viewDidLoad()");
         statusText = getLabel();
         helloButton = getHelloButton();
     }
@@ -50,7 +52,21 @@ public class AppViewController extends UIViewController {
     public native UIButton getHelloButton();
 
     @Selector("BtnPressedCancel_helloButton:")
-    public void BtnPressedCancel_button(NSObject sender){
+    public void BtnPressedCancel_button(NSObject sender) {
         statusText.setText("Hello Intel Multi-OS Engine!");
+
+        UIViewController controller = PopOverScreenController.alloc().init();
+
+        controller.setModalPresentationStyle(UIModalPresentationStyle.Popover);
+        UIPopoverPresentationController popover = controller.popoverPresentationController();
+        popover.setSourceView(this.view());
+        popover.setDelegate(new UIPopoverPresentationControllerDelegate() {
+            @Override
+            public long adaptivePresentationStyleForPresentationController(UIPresentationController controller) {
+                return UIModalPresentationStyle.OverFullScreen;
+            }
+        });
+
+        presentViewControllerAnimatedCompletion(controller, false, null);
     }
 }

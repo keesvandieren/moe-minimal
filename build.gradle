@@ -4,6 +4,14 @@ buildscript {
     repositories {
         jcenter()
     }
+
+    ext {
+        kotlinVersion = '1.0.6'
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
 }
 
 allprojects {

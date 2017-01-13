@@ -1,8 +1,8 @@
-# Minimalistic Multi-OS Engine project
+# Popover Multi-OS Engine iOS UI
 
-A minimal Multi-OS Engine project, used as base project by Squins to debug issues during development.
+Implement a pop over. We have a problem with Auto Layout combined with popovers.
 
-The project is intentionally kept as it is generated, no cleanup and as little changes as possible.
+This project reproduces the minimal problem: using AutoLayout in PopOvers seems to remove all children from the view
 
 List all simulators:
 
